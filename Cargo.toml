@@ -1,0 +1,23 @@
+[package]
+name = "sub-lint"
+version = "0.1.0"
+edition = "2021"
+description = "Command line linter for Netflix's subtitles"
+authors = ["Nico"]
+license = "MIT"
+
+# See more keys and their definitions at https://doc.rust-lang.org/cargo/reference/manifest.html
+
+[dependencies]
+clap = { version = "4.5.2", features = ["cargo", "derive", "env"] }
+clap_derive = "4.5.0"
+enum_dispatch = "0.3.12"
+log = "0.4.21"
+pretty_env_logger = "0.5.0"
+regex = "1.10.3"
+strum = { version = "0.26.1", features = ["strum_macros"] }
+strum_macros = "0.26.1"
+
+[profile.release]
+strip = true
+lto = true
