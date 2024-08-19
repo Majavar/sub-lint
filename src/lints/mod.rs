@@ -5,6 +5,8 @@ use enum_dispatch::enum_dispatch;
 use strum::IntoEnumIterator;
 use strum_macros::EnumIter;
 
+pub const PUNCTUATION: &str = r#".,?!？…！"#;
+
 #[enum_dispatch]
 pub trait Lint {
     fn code(&self) -> &'static str;
@@ -23,6 +25,7 @@ pub enum Lints {
     HyphenWithoutSpace(regex::HyphenWithoutSpace),
     CharMaxPerLine(non_regex::CharMaxPerLine),
     LineCount(non_regex::LineCount),
+    FitOnOneLine(non_regex::FitOnOneLine),
     NoDuplicatedPunctuation(regex::NoDuplicatedPunctuation),
     NoFullWidthNumber(regex::NoFullWidthNumber),
     NoCommaOrPeriod(regex::NoCommaOrPeriod),
