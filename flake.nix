@@ -15,7 +15,7 @@
           inherit system overlays;
         };
         rust = pkgs.rust-bin.stable."1.79.0".minimal.override {
-          extensions = [ "rustfmt" "clippy" "rust-src" ];
+          extensions = [ "rustfmt" "clippy" "rust-src" "rust-analyzer" ];
           targets = [ "wasm32-unknown-unknown" ];
         };
       in

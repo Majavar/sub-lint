@@ -30,6 +30,8 @@ pub enum Lints {
     NoFullWidthNumber(regex::NoFullWidthNumber),
     NoCommaOrPeriod(regex::NoCommaOrPeriod),
     NoU22EFEllipsis(regex::NoU22EFEllipsis),
+    QuotesMismatchOpeningOnly(regex::QuotesMismatchOpeningOnly),
+    QuotesMismatchClosingOnly(regex::QuotesMismatchClosingOnly),
 }
 
 impl Lints {

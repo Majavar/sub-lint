@@ -91,6 +91,19 @@ regex_line_lint!(
     r"[.,?!？…！]{2,}"
 );
 
+regex_global_lint!(
+    QuotesMismatchOpeningOnly,
+    "LXX-006-001",
+    "Opening quote without closing quote",
+    r"“[^”]*$"
+);
+regex_global_lint!(
+    QuotesMismatchClosingOnly,
+    "LXX-006-002",
+    "closing quote without opening quote",
+    r"^[^“]*”"
+);
+
 #[cfg(test)]
 mod tests {
     use super::*;
@@ -175,5 +188,22 @@ mod tests {
         let l = NoU22EFEllipsis::default();
         assert!(l.lint("This is a test…"));
         assert!(!l.lint("This is a test⋯"));
+    }
+
+    #[test]
+    fn test_quotes_mismatch_opening_only() {
+        let l = QuotesMismatchOpeningOnly::default();
+        assert!(l.lint("This is a test"));
+        assert!(!l.lint("“This is a test"));
+
+        assert!(l.lint("This is a test “”"));
+    }
+
+    #[test]
+    fn test_quotes_mismatch_closing_only() {
+        let l = QuotesMismatchClosingOnly::default();
+        assert!(l.lint("This is a test"));
+        assert!(!l.lint("This is a test”"));
+        assert!(l.lint("This is a test “”"));
     }
 }
